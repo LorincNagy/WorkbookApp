@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { MarkdownViewerComponent } from './markdown-viewer.component'; // Importáltad a komponenst
+import { MarkdownViewerComponent } from './markdown/markdown-viewer.component'; // Győződj meg róla, hogy ez a sor helyes
+
 @NgModule({
   declarations: [
     AppComponent,
-    MarkdownViewerComponent, // Itt hozzáadtad a MarkdownViewerComponent-et a deklarációkhoz
+    MarkdownViewerComponent, // Győződj meg róla, hogy itt szerepel
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
