@@ -15,19 +15,18 @@ export class MarkdownViewerComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const filename = params['filename'];
-      this.loadMarkdownFile(filename);
+      if (filename && filename !== 'home') {
+        this.loadMarkdownFile(filename);
+      }
     });
   }
 
   loadMarkdownFile(filename: string) {
     const markdownFilePath = `assets/${filename}.md`;
-    this.http.get(markdownFilePath, { responseType: 'text' }).subscribe(
-      (markdown) => {
+    this.http
+      .get(markdownFilePath, { responseType: 'text' })
+      .subscribe((markdown) => {
         this.convertedHtml = marked.parse(markdown);
-      },
-      (error) => {
-        this.convertedHtml = '<p>A fájl nem található.</p>';
-      }
-    );
+      });
   }
 }

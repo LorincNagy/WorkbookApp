@@ -1,2 +1,9 @@
-<!-- app.component.html -->
-<app-home-component></app-home-component>
+<div class="app-container">
+  <app-home-component></app-home-component>
+
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Dinamikus Tartalomhely: A <router-outlet> egy helyőrző (placeholder) a sablonban, amit az Angular Router használ a megfelelő komponensek dinamikus betöltésére és megjelenítésére az útvonalak alapján. Azaz, amikor az alkalmazás útvonala változik (például a felhasználó navigál egyik oldalról a másikra), az Angular Router kicseréli a <router-outlet> tartalmát a megfelelő komponensre, ami az új útvonalhoz tartozik.
+
+    Miért kell az app.component.html-be?: Az app.component.html gyakorlatilag az alkalmazásod gyökérkomponense, ami azt jelenti, hogy az alkalmazásod fő bejáratát képezi. A <router-outlet> itt van elhelyezve, mert ez biztosítja az alkalmazás alapvető "vásznát", ahol a dinamikus tartalmak (az útvonalak alapján betöltött komponensek) megjelennek. Ez lehetővé teszi, hogy egyetlen oldal alkalmazásod (SPA, Single Page Application) legyen, ahol az oldalak közötti navigáció nem tölti újra az egész oldalt, csak a szükséges komponenseket cseréli ki a <router-outlet>-ben. -->

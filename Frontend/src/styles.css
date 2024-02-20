@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #c4dffa; /* Világos szürkés-kék, hasonló a Bootstrap bg-light színéhez */
+}
+
+/* Térköz hozzáadása a bekezdésekhez */
+p {
+  margin-bottom: 1rem; /* 1rem alapértelmezett térköz a bekezdések alatt */
+}
+
+/* Térköz hozzáadása a címekhez */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Térköz hozzáadása a listákhoz */
+ul,
+ol {
+  margin-bottom: 1rem;
+}
+
+/* Térköz hozzáadása a listaelemekhez, ha szükséges */
+li {
+  margin-bottom: 0.5rem;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

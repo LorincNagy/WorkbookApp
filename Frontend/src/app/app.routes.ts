@@ -48,3 +48,21 @@ export class AppRoutingModule {}
 
 // Összefoglalva:
 // Nem szükséges közvetlenül beilleszteni a MarkdownViewerComponent-et a sablonokba. Az Angular Router gondoskodik arról, hogy a megfelelő komponenst dinamikusan betöltse és megjelenítse az aktuális útvonalnak megfelelően. Ez lehetővé teszi a komponensek újrafelhasználhatóságát és az alkalmazás rugalmas strukturálását.
+
+
+
+
+
+
+// Igen, a <router-outlet> elemnek közvetlen kapcsolata van a routerLink-kel, valamint az AppRoutingModule-ben (vagy bármely más útvonalmodulban) definiált RouterModule, Routes, és az útvonalak konfigurációjával. Minden egyes elem fontos szerepet játszik az Angular útvonalkezelési rendszerében. Lássuk, hogyan kapcsolódnak össze:
+
+// <router-outlet>
+// Szerepe: A <router-outlet> a sablonban egy helyőrző, ahol az Angular Router dinamikusan betölti és megjeleníti a komponenseket az aktív útvonalnak megfelelően. Ez az elem teszi lehetővé, hogy egyoldalas alkalmazást (SPA) hozz létre, ahol az oldalak közötti navigáció nem tölti újra az egész oldalt, csak az új tartalmat tölti be az <router-outlet> helyére.
+// routerLink
+// Szerepe: A routerLink direktíva lehetővé teszi a sablonokban a deklaratív link létrehozását, amely az Angular Router segítségével navigál az alkalmazásban definiált útvonalak között. A routerLink használatakor az Angular elkerüli az oldal teljes újratöltését és helyette a <router-outlet>-ben dinamikusan cseréli a tartalmat az új útvonalnak megfelelően.
+// RouterModule, Routes, és AppRoutingModule
+// Szerepe: Az AppRoutingModule (vagy bármely más útvonalmodul, amit definiálsz) tartalmazza az alkalmazásod útvonalainak konfigurációját. A Routes egy tömb, amely az útvonalakat és azokhoz kapcsolódó komponenseket definiálja. Az RouterModule.forRoot(routes) metódus importálja az útvonalakat az alkalmazás gyökérmoduljába, így az Angular tudja, hogy melyik komponenst kell betöltenie az adott útvonalon.
+// Kapcsolat
+// Amikor a felhasználó egy routerLink-kel rendelkező linkre kattint, az Angular Router frissíti a böngésző URL-jét az új útvonalnak megfelelően, kiértékeli az AppRoutingModule-ben definiált útvonalakat, és betölti a megfelelő komponenst a <router-outlet>-be.
+// A <router-outlet> tehát a dinamikus tartalom "kijelzője", a routerLink az "irányító", és az AppRoutingModule (a RouterModule és Routes segítségével) a "térkép", ami összeköti az útvonalakat a hozzájuk tartozó komponensekkel.
+// Ez a rendszer teszi lehetővé az SPA-k hatékony és felhasználóbarát navigációját anélkül, hogy az oldalak közötti átmenetekkor az egész oldal újratöltődne.
