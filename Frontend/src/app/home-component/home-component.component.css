@@ -1,0 +1,18 @@
+.nav-link {
+  color: #007bff; /* Bootstrap alapértelmezett kék színe */
+  background-color: #f8f9fa; /* Világos háttér */
+  margin: 5px 0; /* Kis térköz minden link között */
+  border-radius: 5px; /* Kerekített sarkok */
+  padding: 10px; /* Több térköz a szöveg körül */
+  transition: background-color 0.2s; /* Sima átmenet hoverkor */
+}
+
+.nav-link:hover {
+  background-color: #e2e6ea; /* Sötétebb háttér hoverkor */
+  color: #0056b3; /* Sötétebb kék szín hoverkor */
+}
+
+.active {
+  font-weight: bold;
+  color: #dc3545; /* Például Bootstrap piros szín */
+}
