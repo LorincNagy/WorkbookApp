@@ -1,9 +1,22 @@
 <div class="app-container">
-  <app-home-component></app-home-component>
-
   <router-outlet></router-outlet>
 </div>
 
 <!-- Dinamikus Tartalomhely: A <router-outlet> egy helyőrző (placeholder) a sablonban, amit az Angular Router használ a megfelelő komponensek dinamikus betöltésére és megjelenítésére az útvonalak alapján. Azaz, amikor az alkalmazás útvonala változik (például a felhasználó navigál egyik oldalról a másikra), az Angular Router kicseréli a <router-outlet> tartalmát a megfelelő komponensre, ami az új útvonalhoz tartozik.
 
     Miért kell az app.component.html-be?: Az app.component.html gyakorlatilag az alkalmazásod gyökérkomponense, ami azt jelenti, hogy az alkalmazásod fő bejáratát képezi. A <router-outlet> itt van elhelyezve, mert ez biztosítja az alkalmazás alapvető "vásznát", ahol a dinamikus tartalmak (az útvonalak alapján betöltött komponensek) megjelennek. Ez lehetővé teszi, hogy egyetlen oldal alkalmazásod (SPA, Single Page Application) legyen, ahol az oldalak közötti navigáció nem tölti újra az egész oldalt, csak a szükséges komponenseket cseréli ki a <router-outlet>-ben. -->
+<!-- Az AppComponent-ben lévő <router-outlet> az a hely, ahol az Angular Router dinamikusan betölti és megjeleníti a különböző komponenseket az aktuális URL alapján. A routing konfigurációban definiált gyökérútvonal és gyermekútvonalak határozzák meg, hogy melyik komponensek jelenjenek meg ebben a helyzetben.
+
+        A gyökérútvonal (path: '') konfigurációja dönti el, hogy mi jelenik meg az alkalmazás gyökércímén (például localhost:4200/ a fejlesztői környezetben). Ha további útvonalakat vagy gyermekútvonalakat definiálsz a gyökérútvonalhoz kapcsolódóan, akkor azok a komponensek lesznek betöltve és megjelenítve a <router-outlet>-ben az adott útvonalak alapján.
+        
+        Gyökérútvonal Tartalma: Amikor a felhasználó a gyökér URL-re navigál, az Angular Router a gyökérútvonalhoz rendelt komponenst tölti be az AppComponent <router-outlet>-jébe. Ez a gyakorlatban gyakran a főoldalt vagy egy kezdőlapot jelenti.
+        
+        Gyermekútvonalak Tartalma: Amikor a felhasználó egy gyermekútvonalra navigál, az Angular Router a megfelelő gyermekkomponenst tölti be a szülőkomponenshez (amit a gyökérútvonalhoz rendeltünk) tartozó <router-outlet>-be, ha van ilyen. Ha a gyermekútvonalak a gyökérútvonalon belül vannak konfigurálva (mint a példádban), akkor ezek a komponensek a HomeComponent-en belül jelennek meg, feltéve, hogy a HomeComponent is tartalmaz egy <router-outlet>-et a gyermekkomponensek számára.
+        
+        Más Útvonalak: Ha más, nem a gyökérútvonalhoz kapcsolódó útvonalakra navigál a felhasználó, akkor az azokhoz az útvonalakhoz rendelt komponensek jelennek meg az AppComponent <router-outlet>-jében, a routing konfiguráció alapján.
+        
+        Tehát nem csak a gyökérútvonal tartalma jelenik meg az AppComponent <router-outlet>-jében, hanem az aktuális útvonalnak megfelelően bármelyik komponens, amit a routing konfiguráció definiál. Ez teszi lehetővé az alkalmazás oldalainak dinamikus betöltését és navigálását anélkül, hogy újra kellene tölteni az oldalt. -->
+
+<!-- Az AppComponent a fő, gyökér komponens az alkalmazásodban, amely az alkalmazásod "vázát" adja. A <router-outlet>-en belül az Angular Router kezeli a navigációt és betölti az aktuális útvonalhoz tartozó komponenseket. Ez a mechanizmus lehetővé teszi az alkalmazás komponenseinek dinamikus megjelenítését anélkül, hogy az oldalt újra kellene tölteni.
+
+            Amikor egy útvonalnak gyermekútvonalai vannak, akkor a szülő útvonalhoz tartozó komponensben (a példádban a HomeComponent) kell egy másik <router-outlet> elemet elhelyezni, amely a gyermekkomponensek megjelenítésére szolgál. Ez a <router-outlet> lesz az a hely, ahol a gyermekútvonalakhoz rendelt komponensek megjelennek, amikor a felhasználó az adott gyermekútvonalra navigál. -->

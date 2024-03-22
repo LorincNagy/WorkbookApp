@@ -15,9 +15,8 @@ export class MarkdownViewerComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       const filename = params['filename'];
-      if (filename && filename !== 'home') {
-        this.loadMarkdownFile(filename);
-      }
+
+      this.loadMarkdownFile(filename);
     });
   }
 

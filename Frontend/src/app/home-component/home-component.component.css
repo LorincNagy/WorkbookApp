@@ -5,6 +5,7 @@
   border-radius: 5px; /* Kerekített sarkok */
   padding: 10px; /* Több térköz a szöveg körül */
   transition: background-color 0.2s; /* Sima átmenet hoverkor */
+  margin-right: 20px;
 }
 
 .nav-link:hover {

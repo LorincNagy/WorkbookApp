@@ -4,8 +4,16 @@ import { HomeComponent } from './home-component/home-component.component';
 import { MarkdownViewerComponent } from './markdown/markdown-viewer.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: ':filename', component: MarkdownViewerComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: ':filename',
+        component: MarkdownViewerComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -13,8 +21,6 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-
 
 // Az általad leírt megközelítés helyes és jól érted a folyamatot. A HomeComponent-ben megadott linkek (a routerLink attribútumokkal) lehetővé teszik a felhasználók számára, hogy különböző útvonalakra navigáljanak. Amikor egy felhasználó egy ilyen linkre kattint, az Angular Router a megfelelő útvonalhoz rendeli a MarkdownViewerComponent-et, amely a dinamikus :filename paramétert használva betölti a megfelelő Markdown fájlt.
 
@@ -28,10 +34,6 @@ export class AppRoutingModule {}
 // Útvonalak és Fájlnév Konvenció: Győződj meg róla, hogy az útvonalakban használt fájlnév-azonosítók pontosan megfelelnek a fájlok neveinek és helyeiknek az assets mappában. Ha a fájlnevek nem egyeznek, vagy ha a fájlok nem találhatók, akkor hibaüzenetet fogsz kapni vagy nem jelenik meg a kívánt tartalom.
 
 // Az egész folyamat automatizált és dinamikus, ahol a MarkdownViewerComponent a központi pont, ami kezeli a Markdown fájlok betöltését és megjelenítését a megadott útvonalparaméter alapján. Az Angular Router és a komponensek közötti interakció teszi lehetővé, hogy egyszerűen kezelhess különböző tartalmakat anélkül, hogy minden egyes tartalomhoz külön komponenst kellene írnod.
-
-
-
-
 
 //Ha a HomeComponent van beágyazva az app.component.html-be a <app-home-component></app-home-component> segítségével, és a MarkdownViewerComponent közvetlenül nincs beillesztve sehol sem a sablonokban, akkor a megjelenítés az Angular Router segítségével történik dinamikusan, az útvonalak alapján.
 
@@ -48,11 +50,6 @@ export class AppRoutingModule {}
 
 // Összefoglalva:
 // Nem szükséges közvetlenül beilleszteni a MarkdownViewerComponent-et a sablonokba. Az Angular Router gondoskodik arról, hogy a megfelelő komponenst dinamikusan betöltse és megjelenítse az aktuális útvonalnak megfelelően. Ez lehetővé teszi a komponensek újrafelhasználhatóságát és az alkalmazás rugalmas strukturálását.
-
-
-
-
-
 
 // Igen, a <router-outlet> elemnek közvetlen kapcsolata van a routerLink-kel, valamint az AppRoutingModule-ben (vagy bármely más útvonalmodulban) definiált RouterModule, Routes, és az útvonalak konfigurációjával. Minden egyes elem fontos szerepet játszik az Angular útvonalkezelési rendszerében. Lássuk, hogyan kapcsolódnak össze:
 
