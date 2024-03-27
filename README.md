@@ -30,7 +30,9 @@ If you encountered issues during the installation of the CLI or setup of a new A
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+You can run the command ng serve from here: WorkbookApp\WorkbookApp\Frontend>.
+
+This command starts a development server. To view your application, navigate to http://localhost:4200/ in your browser. The application will automatically reload if you make any changes to the source files.
 
 ## Code scaffolding
 
