@@ -22,6 +22,12 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
+// RouterModule: Ez egy NgModule, amelyet importálnunk kell az alkalmazás gyökérmoduljába (általában AppModule), hogy az alkalmazásunk használhassa az Angular Router funkcióit. Ez a modul biztosítja a szükséges direktívákat, szolgáltatásokat és beállításokat az útvonalkezeléshez.
+
+// Routes: Ez egy tömb, amely definiálja az alkalmazás útvonalait és a hozzájuk tartozó komponenseket. Ezeket az útvonalakat konfiguráljuk a RouterModule-be való importáláskor.
+
+// ActivatedRoute: Ez az aktuális útvonal állapotát reprezentáló szolgáltatás. Azt tartalmazza, hogy az aktuális útvonal milyen paraméterekkel és adatokkal rendelkezik. Az ActivatedRoute segítségével hozzáférhetünk az URL paraméterekhez, a query paraméterekhez és egyéb útvonalhoz kapcsolódó adatokhoz az aktuális komponensben.
+
 // Az általad leírt megközelítés helyes és jól érted a folyamatot. A HomeComponent-ben megadott linkek (a routerLink attribútumokkal) lehetővé teszik a felhasználók számára, hogy különböző útvonalakra navigáljanak. Amikor egy felhasználó egy ilyen linkre kattint, az Angular Router a megfelelő útvonalhoz rendeli a MarkdownViewerComponent-et, amely a dinamikus :filename paramétert használva betölti a megfelelő Markdown fájlt.
 
 // Hogyan Működik Ez:

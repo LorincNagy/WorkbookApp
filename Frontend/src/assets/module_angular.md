@@ -14,8 +14,8 @@ felismerését és az erősebb típusbiztonságot. Angular kifejezetten TypeScri
 
 ## 3. What is a component in Angular?
 
-Egy komponens egy önálló és újrahasználható része egy Angular alkalmazásnak, amely tartalmazza a sablonokat,
-stílusokat és a logikát is.
+Egy komponens egy önálló és újrahasználható része egy Angular alkalmazásnak, amely tartalmazza a sablonokat(html),
+stílusokat(css) és a logikát(ts) is.
 
 ## 4. How to create a new component in Angular?
 
@@ -31,22 +31,39 @@ futtathatjuk, tesztelhetjük és kiépíthetjük az alkalmazásunkat.
 
 ## 5. What is an Angular module?
 
-Az Angular modul egy logikailag összetartozó funkciók csoportja. Segítségükkel szervezhetjük az alkalmazásunkat és
-lehetővé teszik a lazább csatolást.
+Egy Angular modul egy olyan strukturális egység, amelyben összefogjuk az alkalmazásunk részeit, mint például a komponenseket, direktívákat, szolgáltatásokat és egyéb funkciókat. Ezek a modulok segítenek a kódbázis szervezésében és a kód újrafelhasználásában.
+
+Az Angular modulokat @NgModule dekorátorral hozzuk létre, amely beállítja a modul nevét, illetve meghatározza, hogy milyen összetevőket, direktívákat, szolgáltatásokat és más modulokat importálunk, exportálunk vagy deklarálunk benne.
+
+Az Angular modulok hasznosak abban, hogy az alkalmazást logikailag elkülönítsük kisebb részekre, ami megkönnyíti a fejlesztést és karbantartást. Ezenkívül lehetővé teszik az alkalmazás funkcionalitásának moduláris felépítését, amely elősegíti a csapatmunkát és az új funkciók hozzáadását az alkalmazáshoz.
 
 ## 6. What is a service in Angular?
 
 A szolgáltatások olyan osztályok, amelyek különböző részegységeket, például adatszolgáltatásokat, HTTP hívásokat stb.
-kezelnek.
+kezelnek. Kiszervezhetünk nekik olyan feladatokat amiket nem szeretnénk a komponensben elvégezni.
 
-## 7. What is a directives in Angular?
+## 7. What are directives in Angular?
 
-Az Angular direktívák olyan utasítások, amelyek módosítják a DOM viselkedését vagy megjelenését.
+Az Angular direktívák olyan utasítások, amelyek módosíthatják a DOM (Document Object Model) viselkedését vagy megjelenését az Angular alkalmazásokban. A direktívák lehetővé teszik az alkalmazás fejlesztői számára, hogy dinamikusan módosítsák a DOM struktúráját és megjelenését, így számos különböző funkciót valósíthatnak meg.
+
+Az Angular direktívákat két fő típusba lehet sorolni:
+
+Beépített direktívák: Az Angular alapértelmezett direktívái, amelyeket a keretrendszer biztosít. Ezek a direktívák olyan gyakran használt funkciókat valósítanak meg, mint például az adatkötés, az elemek megjelenítésének, elrejtésének vagy dinamikus módosításának irányítása.
+
+Structural directives (Szerkezeti direktívák): Olyan direktívák, amelyek dinamikusan adnak vagy elvesznek elemeket a DOM-ból az alkalmazásokban.. Például: *ngIf, *ngFor, \*ngSwitch.
+
+Attribute directives (Attribútum direktívák): Olyan direktívák, amelyek módosítják az elem attribútumait vagy viselkedését. Például: ngClass, ngStyle, ngModel.
+
+Egyedi direktívák (Custom directives): Az Angular lehetővé teszi az egyedi direktívák létrehozását az alkalmazás saját igényeinek megfelelően. Ezeket a direktívákat az alkalmazás fejlesztői írják, és saját funkcionalitást adnak hozzá az alkalmazásban.
 
 ## 8. What are Angular LifeCycle hooks?
 
 Az Angular LifeCycle hooks olyan metódusok, amelyek lehetővé teszik számunkra, hogy reagáljunk az Angular alkalmazás
 különböző életciklus eseményeire, például az inicializációra, frissítésre vagy megsemmisítésre.
+
+Az ngOnInit hook azt jelenti, hogy a metódus akkor hívódik meg, amikor az Angular befejezte az összetevő inicializálását, de még nem tette hozzáférhetővé a DOM-ot a komponens számára. Tehát az ngOnInit hook a komponens inicializációjának folyamatában meghívódik, de még nem került sor a DOM manipulációira vagy bármilyen más megjelenítési műveletre. Ezért az ngOnInit használható inicializációs logika végrehajtására, például adatok betöltésére vagy előkészítő műveletek végrehajtására anélkül, hogy közvetlenül a DOM-hoz férnénk hozzá.
+
+ngOnDestroy, ngAfterViewInit, ngOnChanges
 
 ## 9. What is Angular Router and how does it work?
 
@@ -86,14 +103,63 @@ Az útvonalakhoz rendelt komponensek a <router-outlet> direktíva segítségéve
 
 ## 10. How can we pass data to child component and parent component in Angular?
 
+parent.component.ts:
+
+import { Component } from '@angular/core';
+
+@Component({
+selector: 'app-parent',
+templateUrl: './parent.component.html',
+styleUrls: ['./parent.component.css']
+})
+export class ParentComponent {
+dataFromParent: string = 'Ez az adat a szülő komponenstől';
+dataFromChild: string = '';
+
+receiveDataFromChild(data: string) {
+this.dataFromChild = data;
+}
+}
+parent.component.html:
+
+<div>
+  <h2>Szülő komponens</h2>
+  <app-child [inputData]="dataFromParent" (outputEvent)="receiveDataFromChild($event)"></app-child>
+  <p>Szülő komponens adat: {{ dataFromParent }}</p>
+  <p>Adat gyermek komponenstől: {{ dataFromChild }}</p>
+</div>
+
+child.component.ts:
+
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({
+selector: 'app-child',
+templateUrl: './child.component.html',
+styleUrls: ['./child.component.css']
+})
+export class ChildComponent {
+@Input() inputData: string = '';
+@Output() outputEvent: EventEmitter<string> = new EventEmitter<string>();
+
+sendDataToParent() {
+const dataToSend: string = 'Ez az adat a gyermek komponenstől';
+this.outputEvent.emit(dataToSend);
+}
+}
+child.component.html:
+
+<div>
+  <h3>Gyermek komponens</h3>
+  <button (click)="sendDataToParent()">Adat küldése a szülőnek</button>
+</div>
+
 Angularban az adatok átadása a szülő és gyermek komponensek között két fő módon történhet: a szülőből a gyermekbe az @Input() dekorátor segítségével, és a gyermekből a szülőbe az @Output() dekorátor és az események kiemelése révén. Ezenkívül használhatók szolgáltatások is az adatok megosztására a komponensek között.
 
 pl servire:
 
 1. Lépés: Szolgáltatás Definiálása
 
-typescript
-Copy code
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -267,3 +333,17 @@ CurrencyPipe: Szám átalakítása pénznem formátumú szöveggé, a helyi szab
 DecimalPipe: Szám átalakítása tizedes ponttal rendelkező szöveggé, a helyi szabályok szerint formázva.
 PercentPipe: Szám átalakítása százalékos formátumú szöveggé, a helyi szabályok szerint formázva.
 AsyncPipe: Érték kicsomagolása egy aszinkron primitívből, mint például egy Observable vagy Promise.
+
+## 17. Binding
+
+A databinding mechanizmus az Angularban nem direktívákon keresztül működik, hanem az Angular kötési szintaxisának használatával. A kötés szintaxis lehetővé teszi az adatok dinamikus megjelenítését és frissítését a DOM-ban, anélkül, hogy közvetlen DOM műveleteket kellene végezni.
+
+Az Angular kötési szintaxisa közvetlenül az interpoláció, a property binding és az event binding révén teszi lehetővé az adatok és a felhasználói felület közötti kommunikációt. Ezek a kötési mechanizmusok a következők:
+
+Interpoláció: Az {{ }} zárójelek közötti kifejezések megjelenítése az Angular sablonokban. Például: {{ user.name }}.
+
+Property binding: Az elem tulajdonságainak dinamikus beállítása az Angular komponensekből. Például: [property]="expression", ahol a property az elem tulajdonsága (pl. src, value, innerText stb.), és az expression az érték, amelyet beállítani szeretnénk.
+
+Event binding: Az események kezelése és az események hatására végrehajtott műveletek definiálása. Például: (event)="expression", ahol az event az esemény neve (pl. click, keyup, submit stb.), és az expression az esemény bekövetkeztére végrehajtandó kifejezés.
+
+

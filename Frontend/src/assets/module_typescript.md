@@ -55,7 +55,7 @@ typescript
 Copy code
 type MyFunction = (param1: number, param2: string) => boolean;
 
-## 7. How to use generic types in TypeScript?
+## 7. What is generic type, and how to use in TypeScript?
 
 A generikus típusokat a <> jelek között adhatjuk meg a függvények vagy osztályok definiálásakor. Például:
 
@@ -107,3 +107,5 @@ A függvény paramétere elé az értékadás operátorral (?) ellátott az opci
 ## 15. What is the difference between null and undefined in TypeScript?
 
 A null és undefined mindkettő azt jelzi, hogy egy változónak nincs értéke, azonban a null expliciten be van állítva, míg az undefined azt jelenti, hogy a változóhoz nem rendelték hozzá az értéket.
+
+
