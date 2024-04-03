@@ -127,7 +127,6 @@ Hibernate supports a scalable architecture, making it suitable for both small an
 Applications using Hibernate can switch between different databases with minimal changes, promoting database
 independence.
 
-
 Limitations:
 
 -Complexity:
@@ -179,3 +178,27 @@ relationships.
 JPA supports multiple inheritance strategies like SINGLE_TABLE, JOINED, and TABLE_PER_CLASS, configured using the
 @Inheritance annotation. These strategies dictate how entities and their subclasses are mapped to the database tables,
 providing flexibility in representing object hierarchies in relational databases.
+
+#### Stack and Heap
+
+A számítógépes memória két fő területre osztható, amikor programok futtatásáról van szó: a heap-re és a stack-re. Mindkét terület különböző típusú adatok tárolására szolgál, és különböző módon kezelik az adatok élettartamát. Itt egy gyors áttekintés arról, hogy mi tárolódik hol, és hogyan működnek ezek a memóriaterületek:
+
+Stack
+A stack egy LIFO (Last In, First Out - az utoljára bekerült adat kerül ki először) struktúrájú memóriaterület, amit a rendszer automatikusan kezel. Az alábbi adatokat tárolja:
+
+Primitív típusú változók értékei: Mint például int, char, short, stb., amikor ezek lokális változók egy függvényben vagy eljárásban.
+Referencia/változó címek: Amikor egy objektumot vagy tömböt létrehozol a heap-en, a referencia (vagy pointer) az objektumra/tömbre a stack-en lesz tárolva.
+Függvényhívások és visszatérési címek: Amikor egy függvényt vagy metódust meghívsz, a stack tárolja a hívás kontextusát, beleértve a paramétereket, a lokális változókat és a függvényből való visszatérés címét.
+A stack memória nagyon gyors, de korlátozott méretű. A stack-en lévő adatok élettartama korlátozott; egy függvény vagy eljárás befejezésekor automatikusan felszabadulnak.
+
+Heap
+A heap egy szabadon kezelt memóriaterület, ahol a dinamikus memória-allokáció történik. Itt tárolódnak:
+
+Objektumok és tömbök: Amikor a program futása során objektumokat és tömböket hozol létre (például a new kulcsszó használatával Java-ban vagy a malloc C-ben), ezek a heap-en lesznek tárolva.
+Dinamikusan allokált adatok: Bármely adat, amit explicit módon a programozó hoz létre dinamikusan, a heap-en kerül tárolásra.
+A heap-en tárolt adatok élettartama nem korlátozódik a deklarációjuk kontextusára; ezek az adatok addig maradnak érvényben, amíg explicit módon felszabadításra nem kerülnek (például a delete kulcsszóval C++-ban vagy a garbage collector által Java-ban és más magas szintű nyelveken). A heap memória kezelése lassabb, mint a stack-é, mivel a memóriaalokáció és felszabadítás dinamikus és kevésbé hatékony.
+
+Összegzés
+Stack: Gyors, automatikusan kezelt, LIFO memóriaterület lokális változók és függvényhívások számára. Korlátozott méretű és scope-ban (hatókörben).
+Heap: Nagyobb, flexibilisebb memóriaterület a dinamikusan allokált adatok számára. Lassabb hozzáférés, és explicit memóriakezelést igényel (vagy garbage collection-t használó nyelvek esetén automatikus felszabadítást).
+Ezek a memóriaterületek kritikus szerepet játszanak a modern szoftverfejlesztésben, mivel lehetővé teszik a hatékony és rugalmas adatkezelést a programokban.
