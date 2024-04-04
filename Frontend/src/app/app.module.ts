@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, MarkdownViewerComponent, HomeComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule], //AppRoutingModule importálom AppModule-ba , RouterModule ami pedig AppRoutingModule része azt exportálom igy AppRoutingModule tartalmazni fogja igy AppModule is.
   providers: [],
   bootstrap: [AppComponent],
 })

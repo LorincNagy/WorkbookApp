@@ -2,7 +2,7 @@
 
 ## 1. What is TypeScript and why is it useful?
 
-A TypeScript egy nyelvi kiterjesztés a JavaScript-hez, szigorúan tipusos javascript lényegében amely statikus típusellenőrzést, osztályokat és interfészeket, valamint más fejlesztési funkciókat kínál. Hasznos, mert segít a fejlesztőknek csökkenteni a hibák számát a kód írásának és karbantartásának folyamata során, illetve jobb kódmegértést és fejlesztői élményt nyújt.
+A TypeScript egy nyelvi kiterjesztés a JavaScript-hez, szigorúan tipusos JavaScript lényegében amely statikus típusellenőrzést, osztályokat és interfészeket, valamint más fejlesztési funkciókat kínál. Hasznos, mert segít a fejlesztőknek csökkenteni a hibák számát a kód írásának és karbantartásának folyamata során, illetve jobb kódmegértést és fejlesztői élményt nyújt.
 
 A TypeScript egy olyan nyelvi kiterjesztés a JavaScript-hez, amely lehetővé teszi a szigorú típusellenőrzést és típusdeklarációt a JavaScript kódokban. Ez azt jelenti, hogy a TypeScript kódban deklarálni lehet a változók, függvények és egyéb elemek típusát, és a TypeScript fordító (compiler) ellenőrzi ezeket a típusokat a kód írásakor és fordításkor is. Így a TypeScript segít a hibák felderítésében már a fejlesztés során, illetve jobb kódmegértést és dokumentációt nyújt a kódbázisban.
 

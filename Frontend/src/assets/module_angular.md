@@ -13,16 +13,23 @@ Amikor egy komponens példányosításra kerül, létrejön egy új objektum, am
 
 Mind az Angular komponensek, mind a Java osztályok objektumorientált programozási paradigmát követnek, ahol az osztályok és komponensek definíciói sablonként szolgálnak objektumok vagy "példányok" létrehozásához. Mindkettő lehetővé teszi az adatok és a viselkedés egy helyen történő kapszulázását, így segítve a kód modularitását és újrafelhasználhatóságát.
 
+1. Komponens Deklarálása
+   Minden Angular komponens a @Component dekorátorral van jelölve, amely metaadatokat tartalmaz a komponensről, mint például a sablon, a szelektor, és a stílusok. Ez a dekorátor jelzi az Angular számára, hogy egy osztály komponensként funkcionál.
+
+2. Komponens Regisztrálása
+   Amikor egy komponenst egy Angular modulhoz (pl. AppModule) rendelsz a declarations tömbben, az Angular DI rendszere "tudomást szerez" róla. Ez lehetővé teszi a keretrendszer számára, hogy tudja, mely komponensek érhetőek el és hol helyezkednek el az alkalmazás struktúrájában.
+
+3. Komponens Példányosítása
+   Amikor az alkalmazás fut, és egy komponens szelektora vagy útvonala aktiválódik (például a felhasználó egy linkre kattint, ami egy komponenshez vezet), az Angular renderelő motorja létrehozza a komponens példányt. Ez magában foglalja a komponens osztályának konstruktorának meghívását, valamint a függőségek injektálását, ha vannak ilyenek (azaz más szolgáltatások vagy komponensek, amelyekre a komponens támaszkodik).
+
 ## 2. What is TypeScript and how does it relate to Angular?
 
-TypeScript egy szigorú típusellenőrzésű JavaScript kiterjesztés, amely lehetővé teszi a fejlesztőknek a hibák korai
-felismerését és az erősebb típusbiztonságot. Angular kifejezetten TypeScript alapú.
+TypeScript egy szigorúan tipusos JavaScript lényegében, JavaScript kiterjesztés(JavaScript superset), amely kibővíti a JavaScript nyelvet további szintaxisokkal és funkciókkal, lehetővé teszi a fejlesztőknek a hibák korai felismerését és az erősebb típusbiztonságot. Angular kifejezetten TypeScript alapú.
 
 ## 3. What is a component in Angular?
 
 Egy komponens egy önálló és újrahasználható része egy Angular alkalmazásnak, amely tartalmazza a sablonokat(html),  
 stílusokat(css) és a logikát(ts) is. Egyfajta sablon amiből példányokat lehet létrehozni mint objektumokat.
-Minden angular projektnek minimum egy module-ja kell hogy legyen(NGModule) app.module. De app.routing.module is majdnem minden projektben előfordul. Azért van szükség a module-ra mert Angular nem scan-neli automatikusan a file-okat igy nem tudja detectálni a component-eket , meg kell határozni konkrétan a modulban ezeket.
 
 ## 4. How to create a new component in Angular?
 
@@ -44,10 +51,36 @@ Az Angular modulokat @NgModule dekorátorral hozzuk létre, amely beállítja a 
 
 Az Angular modulok hasznosak abban, hogy az alkalmazást logikailag elkülönítsük kisebb részekre, ami megkönnyíti a fejlesztést és karbantartást. Ezenkívül lehetővé teszik az alkalmazás funkcionalitásának moduláris felépítését, amely elősegíti a csapatmunkát és az új funkciók hozzáadását az alkalmazáshoz.
 
+Minden angular projektnek minimum egy module-ja kell hogy legyen(NGModule) app.module. De app.routing.module is majdnem minden projektben előfordul. Azért van szükség a module-ra mert Angular nem scan-neli automatikusan a file-okat igy nem tudja detectálni a component-eket , meg kell határozni konkrétan a modulban ezeket. AppModule kötelező , minimum egy modul nélkül nem müködik az app, de szét lehet splittelni multiply azaz több modulra is.(feature modules)
+Ez nagyon hasznos és elengedhetetlen nagyobb kódok eseténben , igy jobban átlátható a kódbázis, és könyebben struktúrálható is.
+
+@NgModule:
+
+(dipbe)
+
+declarations: [];
+Ide jön minden komponens amit létrehoztam
+
+imports: [];
+Ide azok a modulok jönnek amiket angular előre biztosit (Core Angular fetures) gyűjtemények, különböző funkciókat, direktívákat, szolgáltatásokat és komponenseket biztosítanak, amelyeket felhasználhatsz az Angular alkalmazásodban, melyek angulár modulokban vannak tárolva, összegyűjtve pl FormsModule.
+
+providers:[];
+Ide jönnek a service komponensek amiket létrehoztam.
+Vagy megadhatók és deklarálhatók közvetlenül a komponensben is mint @Injectable ({providedIn:'root'})
+
+bootstrap:[];
+Fontos az applikációnk elindulásához.
+Azt határozza meg hogy melyik komponens elérhető az "index.html" fájl a weboldal gyökér vagy "root" dokumentumában.
+Általában egy ilyen komponens van és az az AppComponent. bootstrap: [AppComponent],
+
+entryComponents:[];
+Hogyha dinamikus komponenseket akarok létrehozni és használni ezeket itt kell megadni, ezt a késöbbi Angular verziókban nem szükséges megadni.
+
 ## 6. What is a service in Angular?
 
 A szolgáltatások olyan osztályok, amelyek különböző részegységeket, például adatszolgáltatásokat, HTTP hívásokat stb.
 kezelnek. Kiszervezhetünk nekik olyan feladatokat amiket nem szeretnénk a komponensben elvégezni.
+@Injectable({providedIn:'root'}) dekorátorral deklarálom az appba vagy AppModule providers tömbjében.
 
 ## 7. What are directives in Angular?
 
@@ -61,7 +94,7 @@ Az Angular alapértelmezett direktívái, amelyeket a keretrendszer biztosít. E
 
 Structural directives (Szerkezeti direktívák): Olyan direktívák, amelyek dinamikusan adnak vagy elvesznek elemeket a DOM-ból az alkalmazásokban.. Például: *ngIf, *ngFor, \*ngSwitch.
 
-Attribute directives (Attribútum direktívák): Olyan direktívák, amelyek módosítják az elem attribútumait vagy viselkedését. Például: ngClass, ngStyle, ngModel.
+Attribute directives (Attribútum direktívák): Olyan direktívák, amelyek képesek befolyásolni az elemek kinézetét, állapotát vagy viselkedését, Az Angular attribútum direktívák a DOM-ban lévő elemek tulajdonságait manipulálják. Például: ngClass, ngStyle, ngModel.
 
 ### Egyedi direktívák (Custom directives):
 
@@ -72,7 +105,12 @@ Az Angular lehetővé teszi az egyedi direktívák létrehozását az alkalmazá
 Az Angular LifeCycle hooks olyan metódusok, amelyek lehetővé teszik számunkra, hogy reagáljunk az Angular alkalmazás
 különböző életciklus eseményeire, például az inicializációra, frissítésre vagy megsemmisítésre.
 
-Az ngOnInit hook azt jelenti, hogy a metódus akkor hívódik meg, amikor az Angular befejezte az összetevő inicializálását, de még nem tette hozzáférhetővé a DOM-ot a komponens számára. Tehát az ngOnInit hook a komponens inicializációjának folyamatában meghívódik, de még nem került sor a DOM manipulációira vagy bármilyen más megjelenítési műveletre. Ezért az ngOnInit használható inicializációs logika végrehajtására, például adatok betöltésére vagy előkészítő műveletek végrehajtására anélkül, hogy közvetlenül a DOM-hoz férnénk hozzá.
+Az ngOnInit hook azt jelenti, hogy a metódus akkor hívódik meg, amikor a komponens vagy direktíva példányosításra került, és Angular befejezte az összetevő inicializálását, de még nem tette hozzáférhetővé a DOM-ot a komponens számára, alapvetően arra szolgál, hogy a komponens inicializálása után, de még azelőtt, hogy bármi megjelenne a felhasználói felületen, kódot hajthass végre. Ezért az ngOnInit használható inicializációs logika végrehajtására, például adatok betöltésére vagy előkészítő műveletek végrehajtására anélkül, hogy közvetlenül a DOM-hoz férnénk hozzá, ezzel korán felismerve az esetleges hibákat.
+
+Adatlekérdezések külső forrásokból (például API-kból),
+A komponens kezdeti állapotának beállítását,
+Feliratkozások létrehozását eseményekre vagy adatfolyamokra,
+Valamint minden egyéb inicializálást, ami a komponens megfelelő működéséhez szükséges.
 
 ngOnDestroy, ngAfterViewInit, ngOnChanges
 
@@ -358,11 +396,18 @@ Ebben a példában a MessageService használ egy BehaviorSubject-et az üzenet t
 
 Az Observable-ök az Angularban és széles körben a reaktív programozásban használt(programozási paradigmát jelent, amely az aszinkron adatfolyamok kezelésére összpontosít.) aszinkron adatfolyamok, amelyek lehetővé teszik az adatok "megfigyelését" és reagálást az idővel bekövetkező változásokra. Az RxJS (Reactive Extensions for JavaScript) könyvtár implementálja őket, amely széles körben használt az Angular alkalmazásokban az aszinkron műveletek, mint például HTTP kérések, felhasználói interakciók vagy időzítések kezelésére.
 
-Alapvető Jellemzők
+Alapvető Jellemzők:
+
 Aszinkron: Az Observable-ök lehetővé teszik az adatok aszinkron kezelését, azaz az adatokat nem azonnal, hanem valamikor a jövőben kapjuk meg.
-Megfigyelhető: Az Observable-ök adatfolyamok, amelyekre fel lehet iratkozni (subscribe), hogy értesítést kapjunk, amikor új adat érkezik, hiba történik, vagy a folyam befejeződik.
+
+Megfigyelhető: Az Observable-ök adatfolyamok, amelyekre fel lehet iratkozni (subscribe), hogy értesítést kapjunk, amikor új adat érkezik, hiba történik, vagy a folyam befejeződik. Az RxJS Observable osztályának belső implementációja gondoskodik arról, hogy az next, error és complete metódusok minden releváns pillanatban meghívódjanak az adatfolyam életciklusának megfelelően, függetlenül attól, hogy a feliratkozó (Observer) ezt explicite megadja-e, vagy sem.
+next(value): Akkor hívódik meg, amikor az Observable új értéket bocsát ki.
+error(err): Akkor hívódik meg, ha az adatfolyamban hiba történik.
+complete(): Akkor hívódik meg, amikor az adatfolyam befejeződik, és több érték nem várható.
+
 Manipulálható: Az RxJS operátorok széles választékát kínálja az adatfolyamok manipulálására, például szűrésre, összegzésre, transzformációra és még sok másra.
-Többször felhasználható: Egy Observable-t több előfizető is felhasználhat, ami lehetővé teszi az adatok megosztását több részegység között.
+
+Többször felhasználható: Egy Observable-t több observer is felhasználhat, ami lehetővé teszi az adatok megosztását több részegység között.
 
 Az Angular és más hasonló keretrendszerekben, amelyek Observable-öket használnak adatfolyamok kezelésére, a HTTP kérés elküldése megtörténik azonnal, amikor meghívod a kéréshez tartozó metódust (pl. this.http.get('api/url')). Ez a lépés nem igényel explicit feliratkozást.
 
