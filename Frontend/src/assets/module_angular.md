@@ -22,6 +22,7 @@ felismerését és az erősebb típusbiztonságot. Angular kifejezetten TypeScri
 
 Egy komponens egy önálló és újrahasználható része egy Angular alkalmazásnak, amely tartalmazza a sablonokat(html),  
 stílusokat(css) és a logikát(ts) is. Egyfajta sablon amiből példányokat lehet létrehozni mint objektumokat.
+Minden angular projektnek minimum egy module-ja kell hogy legyen(NGModule) app.module. De app.routing.module is majdnem minden projektben előfordul. Azért van szükség a module-ra mert Angular nem scan-neli automatikusan a file-okat igy nem tudja detectálni a component-eket , meg kell határozni konkrétan a modulban ezeket.
 
 ## 4. How to create a new component in Angular?
 
