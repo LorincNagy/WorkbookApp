@@ -271,29 +271,26 @@ import EmployeeList from "./Pages/EmployeeList";
   complete some kind of action.
 - Event handling: Callback functions are often used to handle events such as button clicks or form submissions. (
   addEventListener)
-    - Asynchronous programming: Callback functions are commonly used in asynchronous programming to handle the result of
-      an asynchronous operation. (setTimeout)
-    - Iteration: Callback functions can be used to iterate over arrays or other data structures. (forEach)
+  - Asynchronous programming: Callback functions are commonly used in asynchronous programming to handle the result of
+    an asynchronous operation. (setTimeout)
+  - Iteration: Callback functions can be used to iterate over arrays or other data structures. (forEach)
 
 ### What is object destructuring in javascript?
 
 - Object destructuring is a feature in JavaScript that allows you to extract properties from an object and assign them
   to variables.
 
-```` javascript
-
+```javascript
 const person = {
-
-firstName: "John",
-lastName: "Doe",
-age: 30,
-city: "New York"
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  city: "New York",
 };
 
 const { firstName, lastName } = person;
 console.log(firstName); // Output: John
-    
-````
+```
 
 ### What is array destructuring in javascript?
 
@@ -815,3 +812,26 @@ return <div>Hello, world!</div>;
 - Both Bootstrap and Material UI are popular front-end frameworks that provide developers with a set of pre-built
   components and styles that can be used to quickly build responsive and visually appealing web applications. (rapid
   development, accessibility, consistency)
+
+### Cookies
+
+- A sütik (cookie-k) kis adatfájlok, amelyeket a weboldalak hoznak létre és tárolnak a látogató számítógépén vagy mobil eszközén. Ezek a fájlok számos funkciót látnak el, mint például a felhasználói beállítások megjegyzése, a bejelentkezési adatok tárolása, vagy az oldalon végzett tevékenységek nyomon követése marketing célokra.
+
+- Hol jönnek létre a sütik?
+  A sütik létrejötte többnyire a böngészőben történik:
+
+- Látogatáskor: Amikor meglátogatsz egy weboldalt, a szerver elküldhet egy vagy több sütit a böngésződbe, amelyeket a böngésző tárol.
+  Interakció során: Egyes sütik akkor jönnek létre, amikor bizonyos műveleteket végzel egy weboldalon, például kitöltesz egy űrlapot, vagy megváltoztatod a beállításaidat.
+  Harmadik féltől származó sütik: Ezeket nem az általad meglátogatott weboldal, hanem egy harmadik fél szervere hozza létre, például egy hirdetési hálózat vagy szolgáltatás, amely a látogatott weboldalon működik.
+
+- A sütik (cookie-k) élettartama változó lehet, attól függően, hogy milyen típusúak és milyen célból kerültek létrehozásra. Általában két fő típusát különböztetjük meg:
+
+- Munkamenet-sütik (session cookies):
+  Ezek a sütik csupán addig élnek, amíg a böngésző ablaka nyitva van.
+  Amint a felhasználó bezárja a böngészőt, ezek a sütik automatikusan törlődnek.
+  Főként arra használják őket, hogy nyomon kövessék a felhasználó tevékenységét egy adott weboldalon belül egy munkamenet alatt, például egy online vásárlási kosár tartalmának megőrzésére.
+  Állandó sütik (persistent cookies):
+  Ezek a sütik meghatározott lejárati idővel rendelkeznek, amely akár néhány naptól több évig is terjedhet.
+  Ezeket a sütiket a böngésző tárolja még a böngésző bezárása után is, és csak a lejáratuk időpontjában, vagy ha a felhasználó manuálisan törli őket, akkor kerülnek eltávolításra.
+  Gyakori felhasználásuk az, hogy megjegyezzék a felhasználói preferenciákat, beállításokat vagy bejelentkezési adatokat, így nem kell minden egyes látogatáskor újra beírni őket.
+  A süti lejárati idejét általában a weboldal fejlesztője állítja be az adott süti létrehozásakor. Ez a lejárat lehet specifikusan meghatározott dátum, vagy egy adott időtartam (például 30 nap). Ha a süti lejárati ideje eléri a végét, a böngésző automatikusan törli azt.

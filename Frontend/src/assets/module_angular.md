@@ -1,3 +1,6 @@
+https://github.com/LorincNagy/WorkbookApp/blob/main/Frontend/src/assets/module_angular.md
+
+tuple, enum
 # Angular Questions and Answers
 
 ## 1. What is angular?
